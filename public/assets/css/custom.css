@@ -1,0 +1,28 @@
+/* 
+/* 
+/*  custom.css
+/*
+/*  If not using Gulp and Sass, add your custom CSS below then include it
+/*  in your page by adding a reference to assets/css/custom.css in the head of each page.
+/*
+*/
+
+
+.dzu-dropzone{
+    align-items: flex-start;
+}
+
+.dzu-dropzone label.dzu-inputLabelWithFiles {
+    display: none;
+}
+.dzu-dropzone .dzu-submitButtonContainer {
+    padding-left: 30px;
+}
+
+.error {
+    display: block;
+    position: relative;
+    background-size: auto 100%;
+    padding: 170px 0 170px 0;
+    background-color: red;
+  }

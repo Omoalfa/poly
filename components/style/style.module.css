@@ -1,0 +1,10 @@
+.mobile-nav {
+	display: flex;
+	margin-left: auto;
+}
+
+@media only screen and (max-width: 991px) {
+	.mobile-nav {
+		margin-left: 0;
+	}
+}
