@@ -27,19 +27,15 @@ const validateAccess = authToken =>
 * @return Success : { user: x, bearerToken: x }
 * @return Error : DB error or User not Found
 */
-const checkAccessToken = (token, id) =>
-  new Promise(function (resolve, reject) {
-    sequelize
-      .query(
-        `SELECT platform_session FROM wp_xy27yf_users WHERE ID = ${id}`,
-        { type: sequelize.QueryTypes.SELECT }
-      )
-      .then(data => {
-        resolve(data)
-      })
-      .catch(error => {
-        reject(error)
-      });
+const checkAccessToken = (token, email) =>
+  new Promise(async function (resolve, reject) {
+    try {
+      const user = await db.registers.findOne({ where: { email } })
+
+      resolve(user)
+    } catch (error) {
+      reject(error)
+    }
   });
 
 /**

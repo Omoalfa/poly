@@ -3,10 +3,14 @@ const router = express();
 
 const authController = require('../../controllers/auth.controller');
 
-router.post('/login', authController.loginUser);
+router.post('/login', authController.login);
 
-router.get('/login/:token', authController.loginWithToken);
+router.post('/register', authController.registerUser);
 
-router.get('/validateAccess', authController.validateAccess);
+router.post('/forgotpassword', authController.forgotPassword);
+
+router.get('/validateAccess', authController.validateAccess)
+
+router.post('/resetpassword/:token', authController.resetPassword)
 
 module.exports = router;

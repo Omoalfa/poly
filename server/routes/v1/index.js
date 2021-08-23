@@ -24,17 +24,14 @@ router.use((req, res, next) => {
         authService
             .validateAccess(req.cookies.authorization) // Authenitication Using Cookie
             .then(response => {
-                authService.checkAccessToken(req.cookies.authorization, response.userId).then(session => {
-                    if (req.cookies.authorization === session[0].platform_session) {
+                authService.checkAccessToken(req.cookies.authorization, response.email).then(user => {
+                    if (user) {
                         next();
                     } else {
-                        authService.updateAccessToken('NULL', response.userId).then(data => {
-                            res
-                                .clearCookie('authorization')
-                                .status(httpStatus.UNAUTHORIZED)
-                                .redirect('/404')
-                                // .send({ error: { code: httpStatus.UNAUTHORIZED, message: 'Not Authorized' } })
-                        })
+                        return res
+                            .clearCookie('authorization')
+                            .status(httpStatus.UNAUTHORIZED)
+                            .redirect('/login')
                     }
                 })
             })
@@ -43,7 +40,7 @@ router.use((req, res, next) => {
                 res
                     .clearCookie('authorization')   
                     .status(httpStatus.UNAUTHORIZED)
-                    .redirect('/404')
+                    .redirect('/login')
                     // .send({ error: { code: httpStatus.UNAUTHORIZED, message: 'Not Authorized' } })
             }
             );

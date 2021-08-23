@@ -13,7 +13,7 @@ const verifyAccessToken = (token) =>
       if (err) {
         reject(err);
       } else {
-        resolve({ email: decoded.email, userId: decoded.id, isAdmin: decoded.isAdmin });
+        resolve({ email: decoded.email, id: decoded.id });
       }
     });
   });

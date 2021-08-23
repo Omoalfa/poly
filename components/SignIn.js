@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useRef } from "react";
+import { Link } from 'next/router'
+import axios from 'axios'
 
-const SignIn = (props) => {
+const SignIn = () => {
+	const emailRef = useRef()
+	const passwordRef = useRef()
+
+	const handleSubmit = () => {
+		axios
+			.post('/v1/auth/login', {
+				email: emailRef.current.value,
+				password: passwordRef.current.value
+			})
+	}
+
 	return (
 		<div>
 			<div className="main-container fullscreen">
@@ -19,6 +32,7 @@ const SignIn = (props) => {
 											type="email"
 											placeholder="Email Address"
 											name="login-email"
+											ref={emailRef}
 										/>
 									</div>
 									<div className="form-group">
@@ -27,10 +41,11 @@ const SignIn = (props) => {
 											type="password"
 											placeholder="Password"
 											name="login-password"
+											ref={passwordRef}
 										/>
 										<div className="text-right">
 											<small>
-												<a href="#">Forgot password?</a>
+												<a href="/forgotpassword">Forgot password?</a>
 											</small>
 										</div>
 									</div>
@@ -38,16 +53,13 @@ const SignIn = (props) => {
 										className="btn btn-lg btn-block btn-primary"
 										role="button"
 										type="submit"
-										onClick={props.clicked.bind(
-											this,
-											"profile"
-										)}
+										onClick={handleSubmit}
 									>
 										Log in
 									</button>
 									<small>
 										Don't have an account yet?{" "}
-										<a href="#">Create one</a>
+										<Link href="/register">Create one</Link>
 									</small>
 								</form>
 							</div>

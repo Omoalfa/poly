@@ -6,6 +6,16 @@ const config = require('../config/config');
 
 let mailService
 
+const mail = nodemailer.createTransport({
+    host: config.email.host,
+    port: config.email.port,
+    secure: true,
+    auth: {
+        user: config.email.auth.user,
+        pass: config.email.auth.pass,
+    },
+});
+
 const initMailService = () => {
     try {
         mailService = nodemailer.createTransport({
@@ -103,5 +113,6 @@ const sendUserInvitationEmail = catchAsync(async (req, res) => {
 
 module.exports = {
     initMailService,
-    sendUserInvitationEmail
+    sendUserInvitationEmail,
+    mail
 }

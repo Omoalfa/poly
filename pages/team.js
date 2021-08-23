@@ -4,7 +4,6 @@ import { Modal, ModalBody, ModalFooter, ModalTitle } from "react-bootstrap";
 import { getMembers } from '../redux/actions/member/memberAction';
 import { getTeams } from '../redux/actions/team/teamAction';
 import { getProjects, getHomePageDetails, getHomePageDetail, updateDetail } from '../redux/actions/project/projectAction';
-import { parseCookies } from 'nookies'
 
 class Team extends React.Component {
     constructor(props) {
@@ -26,13 +25,6 @@ class Team extends React.Component {
     }
 
     UNSAFE_componentWillMount = () => {
-        const { authorization } = parseCookies();
-        const base64Url = authorization.split('.')[1];
-        const base64 = base64Url.replace('-', '+').replace('_', '/');
-        if (JSON.parse(window.atob(base64)) !== undefined) {
-            const email = Object.values(JSON.parse(window.atob(base64)))[0];
-            this.setState({ email: email });
-        }
         this.setState({ innerModalShow: false });
         this.props.getMembers();
         this.props.getTeams();
