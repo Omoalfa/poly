@@ -35,7 +35,7 @@ const Register = () => {
             .post('/v1/auth/register', data)
             .then(res => {
                 console.log(res)
-                toast.success(res.response.data.message, {
+                toast.success(res.data.message, {
                     position: toast.POSITION.BOTTOM_RIGHT,
                     autoClose: 3000,
                     draggable: false
