@@ -31,7 +31,6 @@ yarn-error.log*
 .env.production.local
 
 # Environment varibales
-.env
 !.env*.example
 
 #public

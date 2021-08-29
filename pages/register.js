@@ -35,7 +35,7 @@ const Register = () => {
             .post('/v1/auth/register', data)
             .then(res => {
                 console.log(res)
-                toast.success(res.response.data.message, {
+                toast.success(res.data.message, {
                     position: toast.POSITION.BOTTOM_RIGHT,
                     autoClose: 3000,
                     draggable: false
@@ -51,21 +51,107 @@ const Register = () => {
             })
     }
 
-    return (
-    <div>
-        <h1>Register</h1>
-        <form>
-            <input type='text' name='firstName' ref={firstNameRef} placeholder='Enter First Name' /><br />
-            <input type='text' name='lastName' ref={lastNameRef} placeholder='Enter Last Name' /><br />
-            <input type='email' name='email' ref={emailRef} placeholder='Enter your email' /><br />
-            <input type='password' name='password' ref={passwordRef} placeholder='Create Password' /><br />
-            <input type='password' onChange={checkPassword} name='confirmPassword' placeholder='Confirm password' ref={confirmPasswordRef} />
-            { error ? <p>{error}</p> : null}
-            <br /><hr />
-            <button onClick={(e) => registerHandler(e)}>Register</button>
-        </form>
-    </div>
-    )
-}
+	return (
+		<div>
+			<div className="main-container fullscreen">
+				<div className="container">
+					<div className="row justify-content-center">
+						<div className="col-xl-5 col-lg-6 col-md-7">
+							<div className="text-center">
+								<h1 className="h2">Create account</h1>
+								<p className="lead">
+									Start doing things for free, in an instant
+								</p>
+								<button className="btn btn-lg btn-block btn-primary">
+									<img
+										alt="Google"
+										src="assets/img/logo-google.svg"
+										className="rounded align-top mr-2"
+									/>
+									Continue with Google
+								</button>
+								<hr />
+								<form>
+                                    <div className="form-group">
+                                        <input
+                                            className="form-control"
+                                            type="text"
+                                            placeholder="Enter first name"
+                                            name="firstName"
+                                            ref={firstNameRef}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+										<input
+											className="form-control"
+											type="text"
+											placeholder="Enter last name"
+											name="lastName"
+                                            ref={lastNameRef}
+										/>
+									</div>
+									<div className="form-group">
+										<input
+											className="form-control"
+											type="email"
+											placeholder="Email Address"
+											name="create-account-email"
+                                            ref={emailRef}
+										/>
+									</div>
+									<div className="form-group">
+										<input
+											className="form-control"
+											type="password"
+											placeholder="Password"
+											name="create-account-password"
+                                            ref={passwordRef}
+										/>
+										<div className="text-left">
+											<small>
+												Your password should be at least
+												8 characters
+											</small>
+										</div>
+									</div>
+                                    <div className="form-group">
+										<input
+											className="form-control"
+											type="password"
+											placeholder="Password"
+											name="confirmpassword"
+                                            ref={confirmPasswordRef}
+                                            onChange={checkPassword}
+										/>
+										<div className="text-left">
+											{
+                                                error &&
+                                                <small>
+                                                    {error}
+											    </small>
+                                            }
+										</div>
+									</div>
+									<button
+										className="btn btn-lg btn-block btn-primary"
+										role="button"
+										type="submit"
+                                        onClick={e => registerHandler(e)}
+									>
+										Create account
+									</button>
+									<small>
+										By clicking 'Create Account' you agree
+										to our <a href="#">Terms of Use</a>
+									</small>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+};
 
-export default Register
+export default Register;
