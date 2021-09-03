@@ -3,6 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
+                "prestart": "npm run migrate",
 		"migrate": "npx sequelize-cli db:migrate",
 		"migrate:undo": "npx sequelize-cli db:migrate:undo",
 		"migrate:undo:all": "npx sequelize-cli db:migrate:undo:all",
